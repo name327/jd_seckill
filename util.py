@@ -112,9 +112,14 @@ def open_image(image_file):
             if "deepin" in os.uname()[2]:
                 os.system("deepin-image-viewer " + image_file)  # for deepin
             else:
-                os.system("eog " + image_file)  # for Linux
+                # os.system("eog " + image_file)  # for Linux
+                print_qr(image_file)
         else:
             os.system("open " + image_file)  # for Mac
+
+
+def print_qr(image_file):
+    os.system("qrencode -t UTF8 `zbarimg -q --raw qr_code.png`")
 
 
 def save_image(resp, image_file):
